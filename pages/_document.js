@@ -2,7 +2,7 @@
  * @Author: smartHome
  * @Date: 2025-11-04 15:23:15
  * @LastEditors: smartHome
- * @LastEditTime: 2025-11-15 21:39:55
+ * @LastEditTime: 2025-11-05 21:39:55
  * @Description: 自定义 document结构 不能使用window对象
  */
 import Document, { Html, Head, Main, NextScript } from 'next/document'

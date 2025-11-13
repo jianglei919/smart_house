@@ -1,9 +1,9 @@
 // @ts-nocheck
 /*
  * @Author: smartHome
- * @Date: 2025-12-16 17:20:15
+ * @Date: 2025-11-06 17:20:15
  * @LastEditors: smartHome
- * @LastEditTime: 2025-10-10 16:32:23
+ * @LastEditTime: 2025-11-10 16:32:23
  * @Description: 修改 three 的轨道控制器 使其按下shift键时可以旋转而不是拖拽
  */
 import {
