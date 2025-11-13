@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-04-10 20:17:15
- * @LastEditors: hongbin
- * @LastEditTime: 2023-09-08 18:25:17
+ * @Author: smartHome
+ * @Date: 2025-10-10 20:17:15
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-08 18:25:17
  * @Description: SwitchController
  */
 

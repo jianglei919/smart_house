@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-01-15 21:32:52
- * @LastEditors: hongbin
- * @LastEditTime: 2023-01-15 21:32:53
+ * @Author: smartHome
+ * @Date: 2025-11-15 21:32:52
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-15 21:32:53
  * @Description:
  */
 import GlobalStyle from "@/src/styled/GlobalStyle";

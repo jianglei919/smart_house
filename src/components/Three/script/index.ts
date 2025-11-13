@@ -1,9 +1,9 @@
 "use client";
 /*
- * @Author: hongbin
- * @Date: 2023-01-15 17:51:05
- * @LastEditors: hongbin
- * @LastEditTime: 2023-01-30 10:19:06
+ * @Author: smartHome
+ * @Date: 2025-11-15 17:51:05
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-30 10:19:06
  * @Description:创建three元素
  */
 import * as THREE from "three";

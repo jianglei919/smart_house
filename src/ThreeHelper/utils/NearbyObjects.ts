@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-02-07 11:28:21
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-01 19:06:13
+ * @Author: smartHome
+ * @Date: 2025-12-07 11:28:21
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-01 19:06:13
  * @Description:附近物体检测
  */
 import { Box3, Vector3 } from "three";

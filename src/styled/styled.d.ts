@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-01-16 11:18:49
- * @LastEditors: hongbin
- * @LastEditTime: 2023-01-16 11:18:49
+ * @Author: smartHome
+ * @Date: 2025-11-16 11:18:49
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-16 11:18:49
  * @Description: styled-components 类型定义文件
  */
 import "styled-components";

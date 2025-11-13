@@ -1,9 +1,9 @@
 //@ts-nocheck
 /*
- * @Author: hongbin
- * @Date: 2023-04-21 18:09:32
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-21 18:25:55
+ * @Author: smartHome
+ * @Date: 2025-10-21 18:09:32
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-21 18:25:55
  * @Description:
  */
 class DBWrapper {

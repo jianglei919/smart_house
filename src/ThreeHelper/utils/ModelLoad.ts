@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-12-10 11:15:38
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-07 09:27:55
+ * @Author: smartHome
+ * @Date: 2025-11-10 11:15:38
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-07 09:27:55
  * @Description:加载模型
  */
 import * as THREE from "three";
@@ -30,7 +30,7 @@ export class ModelsLoad extends KeyBoardListener {
         //TODO webpack打包需要另处理
         dracoLoader.setDecoderPath("/draco/");
         // dracoLoader.setDecoderPath("./draco/");
-        // dracoLoader.setDecoderPath("https://api.hongbin.xyz:3002/kmyc/");
+        // dracoLoader.setDecoderPath("https://api.smartHome.xyz:3002/kmyc/");
         this.gltfLoader = new GLTFLoader(this.manager);
         this.gltfLoader.setDRACOLoader(dracoLoader);
         // this.gltfLoader.setPath("model/");

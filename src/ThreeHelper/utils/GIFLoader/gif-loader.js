@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-03-17 21:48:36
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-18 18:17:45
+ * @Author: smartHome
+ * @Date: 2025-11-17 21:48:36
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-18 18:17:45
  * @Description:
  */
 import { FileLoader } from 'three/src/loaders/FileLoader';

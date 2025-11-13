@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-02-13 14:18:09
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-05 22:39:56
+ * @Author: smartHome
+ * @Date: 2025-12-13 14:18:09
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-05 22:39:56
  * @Description: 骨骼动画
  */
 import { ThreeHelper } from "@/src/ThreeHelper";

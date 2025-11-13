@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-02-25 13:15:30
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-16 13:36:43
+ * @Author: smartHome
+ * @Date: 2025-12-25 13:15:30
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-16 13:36:43
  * @Description: 与web worker使用时转换模型的数据类型
  */
 

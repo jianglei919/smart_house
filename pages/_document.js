@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-09-04 15:23:15
- * @LastEditors: hongbin
- * @LastEditTime: 2023-01-15 21:39:55
+ * @Author: smartHome
+ * @Date: 2025-11-04 15:23:15
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-15 21:39:55
  * @Description: 自定义 document结构 不能使用window对象
  */
 import Document, { Html, Head, Main, NextScript } from 'next/document'

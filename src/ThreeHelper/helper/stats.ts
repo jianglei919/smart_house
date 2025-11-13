@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-01-07 12:59:50
- * @LastEditors: hongbin
- * @LastEditTime: 2023-01-07 13:06:48
+ * @Author: smartHome
+ * @Date: 2025-11-07 12:59:50
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-07 13:06:48
  * @Description:性能指示器
  */
 import Stats from "stats.js";

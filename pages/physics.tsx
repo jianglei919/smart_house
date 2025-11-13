@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-04-22 14:49:36
- * @LastEditors: hongbin
- * @LastEditTime: 2023-05-20 22:04:10
+ * @Author: smartHome
+ * @Date: 2025-10-22 14:49:36
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-20 22:04:10
  * @Description:物理段 孪生
  */
 import { ThreeHelper } from "@/src/ThreeHelper";

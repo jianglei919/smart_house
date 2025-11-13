@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-01-01 19:37:53
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-01 22:08:17
+ * @Author: smartHome
+ * @Date: 2025-11-01 19:37:53
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-01 22:08:17
  * @Description: 动画控制器
  */
 import { AnimationMixer, Clock, LoopOnce } from "three";

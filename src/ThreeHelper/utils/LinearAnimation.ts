@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-01-02 20:14:51
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-24 18:08:39
+ * @Author: smartHome
+ * @Date: 2025-11-02 20:14:51
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-24 18:08:39
  * @Description:线性动画 LinearAnimation
  */
 

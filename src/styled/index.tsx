@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-02-06 15:48:55
- * @LastEditors: hongbin
- * @LastEditTime: 2022-05-04 09:29:04
+ * @Author: smartHome
+ * @Date: 2025-12-06 15:48:55
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-04 09:29:04
  * @Description: 常用styled
  */
 import styled, { css, keyframes } from "styled-components";

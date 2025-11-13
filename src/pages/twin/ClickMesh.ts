@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-04-10 15:19:19
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-22 14:24:47
+ * @Author: smartHome
+ * @Date: 2025-10-10 15:19:19
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-22 14:24:47
  * @Description: 鼠标选中物体
  */
 import { ThreeHelper } from "@/src/ThreeHelper";

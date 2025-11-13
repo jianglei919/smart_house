@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-04-22 14:58:12
- * @LastEditors: hongbin
- * @LastEditTime: 2023-05-20 21:59:42
+ * @Author: smartHome
+ * @Date: 2025-10-22 14:58:12
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-20 21:59:42
  * @Description:
  */
 import { NextSEO } from "@/src/components/NextSEO";

@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-05-20 22:19:07
- * @LastEditors: hongbin
- * @LastEditTime: 2023-05-20 22:59:42
+ * @Author: smartHome
+ * @Date: 2025-10-20 22:19:07
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-20 22:59:42
  * @Description:AirQuality 空气质量
  */
 import { FC, useEffect, useRef } from "react";

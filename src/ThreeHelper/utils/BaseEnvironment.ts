@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-12-10 11:12:36
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-21 10:09:12
+ * @Author: smartHome
+ * @Date: 2025-11-10 11:12:36
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-21 10:09:12
  * @Description:初始化环境
  */
 import * as THREE from "three";

@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-02-02 13:37:11
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-05 22:42:52
+ * @Author: smartHome
+ * @Date: 2025-12-02 13:37:11
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-05 22:42:52
  * @Description: 八叉树控制器
  */
 import * as THREE from "three";

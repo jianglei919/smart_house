@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-12-11 21:36:03
- * @LastEditors: hongbin
- * @LastEditTime: 2023-03-31 23:11:48
+ * @Author: smartHome
+ * @Date: 2025-11-11 21:36:03
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-11-31 23:11:48
  * @Description:
  */
 
@@ -11,7 +11,7 @@
  */
 declare module "three/src/objects/Mesh" {
     interface Mesh {
-        me: "hongbin";
+        me: "smartHome";
         /**
          * @description: 传递纹理 六张图片 顺序固定 (右 左 上 下 前 后)
          * @param {string} 右 right
@@ -34,7 +34,7 @@ declare module "three/src/objects/Mesh" {
 }
 declare module "three/src/materials/ShaderMaterial" {
     interface ShaderMaterial {
-        me: "hongbin";
+        me: "smartHome";
         /**
          * @description 更改uniforms
          * - 默认更改太繁琐
@@ -47,7 +47,7 @@ declare module "three/src/materials/ShaderMaterial" {
 
 declare module "three/src/math/Triangle" {
     interface Triangle {
-        me: "hongbin";
+        me: "smartHome";
         /**
          * @description 用于八叉树检测时返回碰撞物体所属哪个物体
          * 单独使用没有这个属性

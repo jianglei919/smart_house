@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2022-12-10 08:23:15
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-10 16:33:45
+ * @Author: smartHome
+ * @Date: 2025-11-10 08:23:15
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-10 16:33:45
  * @Description:Three.js 包装类
  */
 import * as THREE from "three";

@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-05-20 22:06:18
- * @LastEditors: hongbin
- * @LastEditTime: 2023-05-20 22:18:23
+ * @Author: smartHome
+ * @Date: 2025-10-20 22:06:18
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-20 22:18:23
  * @Description: Temperature 温度
  */
 import { FC, useEffect, useRef } from "react";

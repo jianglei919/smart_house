@@ -1,8 +1,8 @@
 /*
- * @Author: hongbin
- * @Date: 2023-04-21 16:24:36
- * @LastEditors: hongbin
- * @LastEditTime: 2023-04-21 22:05:53
+ * @Author: smartHome
+ * @Date: 2025-10-21 16:24:36
+ * @LastEditors: smartHome
+ * @LastEditTime: 2025-10-21 22:05:53
  * @Description:indexDb 存储模型
  */
 import { ThreeHelper } from "@/src/ThreeHelper";
