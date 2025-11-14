@@ -9,7 +9,7 @@ import { NextSEO } from "@/src/components/NextSEO";
 import Image from "next/image";
 import { FC, useState } from "react";
 import styled from "styled-components";
-import bg from "../public/textures/mountains.jpg";
+import bg from "../public/textures/img.png";
 import { flexCenter } from "@/src/styled";
 import DBWrapper from "@/src/utils/DBWrapper";
 
@@ -151,12 +151,21 @@ const HomePage: FC<IProps> = () => {
                                 setIsRegister(true);
                             }}
                             style={{
-                                color: "#284549",
-                                fontSize: "1vmax",
-                                marginTop: "1vmax",
+                                color: "#3498DB",
+                                fontSize: "clamp(12px, 1vmax, 16px)",
+                                marginTop: "1.5vmax",
+                                cursor: "pointer",
+                                textDecoration: "underline",
+                                transition: "all 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.color = "#2980B9";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.color = "#3498DB";
                             }}
                         >
-                            注册
+                            还没有账号？立即注册
                         </span>
                     </Plane>
                 )}
@@ -220,12 +229,21 @@ const HomePage: FC<IProps> = () => {
                                 setIsRegister(false);
                             }}
                             style={{
-                                color: "#284549",
-                                fontSize: "1vmax",
-                                marginTop: "1vmax",
+                                color: "#3498DB",
+                                fontSize: "clamp(12px, 1vmax, 16px)",
+                                marginTop: "1.5vmax",
+                                cursor: "pointer",
+                                textDecoration: "underline",
+                                transition: "all 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.color = "#2980B9";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.color = "#3498DB";
                             }}
                         >
-                            登陆
+                            已有账号？立即登录
                         </span>
                     </Plane>
                 ) : null}
@@ -238,58 +256,61 @@ const HomePage: FC<IProps> = () => {
 export default HomePage;
 
 const Input = styled.input`
-    width: 80%;
-    padding: 5px;
-    height: 4vh;
-    border: none;
-    margin: 1vh;
-    font-size: 1vmax;
-    background: var(--clay-background, rgba(0, 0, 0, 0.005));
-    border-radius: 0.4vw;
-    box-shadow: var(--clay-shadow-outset, 8px 8px 16px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -8px -8px 16px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                8px 8px 16px 0 hsla(0, 0%, 100%, 0.2)
-            );
-    ::placeholder {
-        color: #18282b;
-    }
-    color: #152f34;
+    width: 85%;
+    padding: 14px 18px;
+    height: auto;
+    border: 2px solid rgba(173, 216, 230, 0.3);
+    margin: 10px 0;
+    font-size: clamp(14px, 1.2vmax, 18px);
+    background: rgba(240, 248, 255, 0.85);
+    border-radius: 12px;
+    color: #2c5f7f;
     outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(135, 206, 250, 0.15);
+
+    ::placeholder {
+        color: #87CEEB;
+    }
+
+    &:focus {
+        border-color: #87CEEB;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 16px rgba(135, 206, 250, 0.3);
+        transform: translateY(-2px);
+    }
+
+    &:hover {
+        border-color: #ADD8E6;
+    }
 `;
 
 const Button = styled.div`
     cursor: pointer;
-    color: #18282b;
-    width: 100%;
-    height: 5vh;
-    margin-top: 2vh;
-    align-self: flex-start;
-
+    color: #ffffff;
+    width: 85%;
+    height: auto;
+    padding: 14px 24px;
+    margin-top: 20px;
+    font-size: clamp(14px, 1.2vmax, 18px);
+    font-weight: 600;
+    letter-spacing: 0.5px;
     ${flexCenter};
-    transition: 0.3s;
-    background: var(--clay-background, rgba(0, 0, 0, 0.005));
-    border-radius: 0.3vw;
-    box-shadow: var(--clay-shadow-outset, 8px 8px 16px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -8px -8px 16px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                8px 8px 16px 0 hsla(0, 0%, 100%, 0.2)
-            );
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    border: none;
 
-    :active {
-        color: #80d9e8;
+    &:hover {
+        background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
     }
 `;
 
@@ -298,26 +319,24 @@ const Container = styled.div`
 `;
 
 const Plane = styled.div`
-    width: min(400px, 20vw);
-    height: 70vh;
-    padding-top: 10vh;
-    margin: 10vh 0 0 10vw;
+    width: min(450px, 90vw);
+    min-height: auto;
+    padding: 50px 40px 40px;
+    margin: 22vh auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--clay-background, rgba(0, 0, 0, 0.005));
-    border-radius: var(--clay-border-radius, 32px);
-    box-shadow: var(--clay-shadow-outset, 8px 8px 16px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -8px -8px 16px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                8px 8px 16px 0 hsla(0, 0%, 100%, 0.2)
-            );
+    background: rgba(240, 248, 255, 0.75);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(173, 216, 230, 0.4);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+                0 2px 8px rgba(135, 206, 250, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    
+    @media (max-width: 768px) {
+        margin: 18vh auto 0;
+    }
 `;
 
 const FixedBg = styled.div`
@@ -331,10 +350,24 @@ const FixedBg = styled.div`
 
 export const Fixed = styled.span`
     position: fixed;
-    top: 20vh;
-    left: 40vw;
-    font-size: 5vmax;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(20px, 3vmax, 42px);
+    font-weight: 700;
     letter-spacing: 2px;
-    text-shadow: 2px 3px 4px #234046;
-    color: #284549;
+    text-shadow: 2px 4px 8px rgba(52, 152, 219, 0.3),
+                 0 0 20px rgba(135, 206, 250, 0.2);
+    color: #2980B9;
+    background: linear-gradient(135deg, #3498DB 0%, #5DADE2 50%, #85C1E2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+    z-index: 10;
+    
+    @media (max-width: 768px) {
+        top: 5vh;
+        font-size: clamp(16px, 3vmax, 36px);
+    }
 `;
