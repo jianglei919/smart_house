@@ -43,44 +43,75 @@ export default Account;
 
 const Button = styled.div`
     cursor: pointer;
-    color: #b58b78;
+    color: #ffffff;
     width: 100%;
-    height: 5vh;
-    margin-top: 2vh;
-    align-self: flex-start;
-
+    height: auto;
+    padding: 10px 16px;
+    margin-top: 10px;
+    font-size: clamp(13px, 1.1vmax, 16px);
+    font-weight: 600;
+    letter-spacing: 0.5px;
     ${flexCenter};
-    transition: 0.3s;
-    background: var(--clay-background, rgba(0, 0, 0, 0.005));
-    border-radius: 0.5vw;
-    box-shadow: var(--clay-shadow-outset, 5px 5px 10px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -5px -5px 10px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                5px 5px 10px 0 hsla(0, 0%, 100%, 0.2)
-            );
-
-    :active {
-        color: #917264;
-    }
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    border: none;
     visibility: hidden;
     opacity: 0;
-    transition: 0.3s;
+
+    &:hover {
+        background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
+    }
 `;
 
 const Container = styled.div`
     position: fixed;
-    top: 1vh;
-    left: 1vw;
-    z-index: 1;
-    width: 10vw;
+    top: 2vh;
+    left: 2vw;
+    z-index: 100;
+    width: min(200px, 15vw);
+    padding: 20px;
+    background: rgba(240, 248, 255, 0.75);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid rgba(173, 216, 230, 0.4);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+                0 2px 8px rgba(135, 206, 250, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    
+    p {
+        margin: 0 0 10px 0;
+        font-size: clamp(14px, 1.2vmax, 18px);
+        font-weight: 600;
+        color: #2c5f7f;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    :hover {
+        box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2),
+                    0 4px 12px rgba(135, 206, 250, 0.3),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
     :hover ${Button} {
         visibility: visible;
         opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+        width: min(160px, 35vw);
+        padding: 15px;
     }
 `;

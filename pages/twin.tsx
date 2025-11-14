@@ -25,7 +25,7 @@ interface IProps {}
 const House: FC<IProps> = () => {
     return (
         <Fragment>
-            <NextSEO title="智慧家居-数字孪生" />
+            <NextSEO title="智慧家居-数字" />
             <Account />
             <Canvas
                 init={init}

@@ -65,7 +65,7 @@ const HomePage: FC<IProps> = () => {
     const login = async () => {
         if (isLoading) return;
         setIsLoading(true);
-        const db = new DBWrapper("house", "1", {
+        const db = new DBWrapper("smart_house", "1", {
             onupgradeneeded: (e: any) => {
                 const db = e.target.result;
                 const objStore = db.createObjectStore("user", {
@@ -80,7 +80,6 @@ const HomePage: FC<IProps> = () => {
             index: "name",
             query: IDBKeyRange.only(name),
         });
-        console.log(query);
         if (!query.length) {
             const userData = {
                 name,
@@ -247,7 +246,7 @@ const HomePage: FC<IProps> = () => {
                         </span>
                     </Plane>
                 ) : null}
-                <Fixed>智慧家居数字孪生系统</Fixed>
+                <Fixed>智慧家居数字系统</Fixed>
             </Container>
         </>
     );

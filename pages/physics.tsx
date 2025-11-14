@@ -50,7 +50,7 @@ const House: FC<IProps> = () => {
 
     return (
         <>
-            <NextSEO title="智慧家居-数字孪生" />
+            <NextSEO title="智慧家居-数字" />
             <FixedTitle
                 style={{
                     color: "#c5ab72",
