@@ -1,8 +1,8 @@
 /*
  * @Author: smartHome
- * @Date: 2025-12-02 21:05:19
+ * @Date: 2025-11-02 21:05:19
  * @LastEditors: smartHome
- * @LastEditTime: 2025-12-12 13:32:01
+ * @LastEditTime: 2025-11-12 13:32:01
  * @Description:移动端摇杆
  */
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
