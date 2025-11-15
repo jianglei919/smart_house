@@ -6,9 +6,9 @@
  * @Description:
  */
 import { DBUserInfo } from "@/pages";
-import { FlexDiv, flexCenter } from "@/src/styled";
+import { flexCenter } from "@/src/styled";
 import DBWrapper from "@/src/utils/DBWrapper";
-import { FC, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 interface IProps {
@@ -21,7 +21,7 @@ const UserManage: FC<IProps> = ({ close }) => {
 
     useEffect(() => {
         (async () => {
-            const db = new DBWrapper("smarthouse", "1", {
+            const db = new (DBWrapper as any)("smart_house", "1", {
                 onupgradeneeded: (e: any) => {
                     const db = e.target.result;
                     const objStore = db.createObjectStore("user", {
@@ -30,7 +30,7 @@ const UserManage: FC<IProps> = ({ close }) => {
                     });
                     objStore.createIndex("name", "name", { unique: 1 });
                 },
-            }) as any;
+            });
             dbRef.current = db;
             await db.open();
             const query = await db.getAll("user");
@@ -40,116 +40,273 @@ const UserManage: FC<IProps> = ({ close }) => {
     }, []);
 
     return (
-        <Container>
-            {users.map((user) => (
-                <div key={user.name}>
-                    <span>{user.name}</span>
-                    <input
-                        value={user.password}
-                        onChange={(e) => {
-                            setUsers((users) =>
-                                users.map((u) => {
-                                    if (u.name == user.name) {
-                                        u.password = e.target.value;
-                                    }
-                                    return u;
-                                })
-                            );
-                        }}
-                    />
-                    <Button
-                        onClick={async () => {
-                            if (dbRef.current) {
-                                dbRef.current
-                                    .put("user", {
-                                        ...user,
-                                    })
-                                    .then((res: number) => {
-                                        setTimeout(() => {
-                                            console.log("res", res);
-                                            alert("修改成功");
-                                        }, 100);
-                                    })
-                                    .catch((err: any) => {
-                                        console.log("err", err);
-                                        alert("修改失败");
-                                    });
-                            }
-                        }}
-                    >
-                        更新
-                    </Button>
-                    <Button
-                        onClick={async () => {
-                            if (dbRef.current) {
-                                dbRef.current
-                                    .delete("user", user.id)
-                                    .then((res: number) => {
-                                        setTimeout(() => {
-                                            console.log("res", res);
-                                            alert("删除成功");
+        <>
+            <Overlay onClick={close} />
+            <Container>
+                <Header>
+                    <Title>用户管理</Title>
+                    <CloseButton onClick={close}>✕</CloseButton>
+                </Header>
+
+                {users.length > 0 ? (
+                    <>
+                        <UserList>
+                            {users.map((user) => (
+                                <UserItem key={user.name}>
+                                    <UserLabel>{user.name}</UserLabel>
+                                    <PasswordInput
+                                        type="text"
+                                        value={user.password}
+                                        placeholder="输入密码"
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                             setUsers((users) =>
-                                                users.filter(
-                                                    (u) => u.id != user.id
-                                                )
+                                                users.map((u) => {
+                                                    if (u.name == user.name) {
+                                                        u.password = e.target.value;
+                                                    }
+                                                    return u;
+                                                })
                                             );
-                                        }, 100);
-                                    })
-                                    .catch((err: any) => {
-                                        console.log("err", err);
-                                        alert("删除失败");
-                                    });
-                            }
-                        }}
-                    >
-                        删除
-                    </Button>
-                </div>
-            ))}
-            {users.length ? (
-                <Button
-                    style={{ width: "100%", height: "4vh" }}
-                    onClick={close}
-                >
-                    关闭
-                </Button>
-            ) : (
-                <></>
-            )}
-        </Container>
+                                        }}
+                                    />
+                                    <ButtonGroup>
+                                        <Button
+                                            onClick={async () => {
+                                                if (dbRef.current) {
+                                                    dbRef.current
+                                                        .put("user", {
+                                                            ...user,
+                                                        })
+                                                        .then((res: number) => {
+                                                            setTimeout(() => {
+                                                                console.log("res", res);
+                                                                alert("修改成功");
+                                                            }, 100);
+                                                        })
+                                                        .catch((err: any) => {
+                                                            console.log("err", err);
+                                                            alert("修改失败");
+                                                        });
+                                                }
+                                            }}
+                                        >
+                                            更新
+                                        </Button>
+                                        <Button
+                                            onClick={async () => {
+                                                if (dbRef.current) {
+                                                    dbRef.current
+                                                        .delete("user", user.id)
+                                                        .then((res: number) => {
+                                                            setTimeout(() => {
+                                                                console.log("res", res);
+                                                                alert("删除成功");
+                                                                setUsers((users) =>
+                                                                    users.filter(
+                                                                        (u) => u.id != user.id
+                                                                    )
+                                                                );
+                                                            }, 100);
+                                                        })
+                                                        .catch((err: any) => {
+                                                            console.log("err", err);
+                                                            alert("删除失败");
+                                                        });
+                                                }
+                                            }}
+                                        >
+                                            删除
+                                        </Button>
+                                    </ButtonGroup>
+                                </UserItem>
+                            ))}
+                        </UserList>
+                    </>
+                ) : (
+                    <EmptyState>暂无用户数据</EmptyState>
+                )}
+            </Container>
+        </>
     );
 };
 
 export default UserManage;
 
+const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 98;
+    animation: fadeIn 0.2s ease;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+`;
+
+const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+`;
+
+const Title = styled.h2`
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+`;
+
+const CloseButton = styled.button`
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
+    }
+
+    &:active {
+        transform: rotate(90deg) scale(0.9);
+    }
+`;
+
+const UserList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`;
+
+const UserItem = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease;
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+`;
+
+const UserLabel = styled.span`
+    color: #e0e7ff;
+    font-weight: 600;
+    font-size: 15px;
+    min-width: 100px;
+    flex-shrink: 0;
+`;
+
+const PasswordInput = styled.input`
+    flex: 1;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    padding: 10px 14px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.2s ease;
+
+    &:focus {
+        border-color: #60a5fa;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+`;
+
+const EmptyState = styled.div`
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+`;
+
 const Button = styled.button`
     cursor: pointer;
-    width: 4vw;
-    height: 100%;
-    padding: 5px;
-    margin-left: 5px;
-    align-self: flex-start;
+    min-width: 70px;
+    height: 36px;
+    padding: 8px 16px;
     border: none;
-    color: #72601e;
-
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
     ${flexCenter};
-    transition: 0.3s;
-    background: var(--clay-background, rgba(0, 0, 0, 0.005));
-    border-radius: 0.3vw;
-    box-shadow: var(--clay-shadow-outset, 8px 8px 16px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -8px -8px 16px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                8px 8px 16px 0 hsla(0, 0%, 100%, 0.2)
-            );
+    transition: all 0.2s ease;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 
-    :active {
-        color: #80d9e8;
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+    }
+
+    &:last-of-type {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
     }
 `;
 
@@ -158,71 +315,48 @@ const Container = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
-    border-radius: 1vw;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+    border-radius: 16px;
     z-index: 99;
-    max-width: 80vw;
+    max-width: 600px;
     max-height: 80vh;
-    min-width: 20vw;
-    min-height: 40vh;
-    color: #000;
-    padding: 1vh;
-    & > div {
-        span {
-            color: #8065a7;
-            width: 8vw;
+    min-width: 500px;
+    color: #ffffff;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    animation: scaleIn 0.3s ease;
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
         }
-        margin: 10px;
-        display: flex;
-        justify-content: space-between;
-        background: linear-gradient(
-            293deg,
-            rgb(252 189 0 / 63%),
-            rgb(166 141 240 / 60%)
-        );
-        border: none;
-        box-shadow: var(
-                --clay-shadow-outset,
-                5px 5px 10px 0 rgba(0, 0, 0, 0.25)
-            ),
-            inset
-                var(
-                    --clay-shadow-inset-primary,
-                    -5px -5px 10px 0 rgba(0, 0, 0, 0.25)
-                ),
-            inset
-                var(
-                    --clay-shadow-inset-secondary,
-                    5px 5px 10px 0 hsla(0, 0%, 100%, 0.2)
-                );
-        border-radius: 0.5vw;
-        padding: 5px;
-        align-items: center;
-        input {
-            border-radius: 0.3vw;
-            border: none;
-            background: transparent;
-            outline: none;
-            padding: 5px;
-            margin-left: 5px;
-            background: #00000011;
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
     }
-    background: linear-gradient(
-        293deg,
-        rgb(252 189 0 / 63%),
-        rgb(166 141 240 / 60%)
-    );
-    border-radius: 0.5vw;
-    box-shadow: var(--clay-shadow-outset, 5px 5px 10px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -5px -5px 10px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                5px 5px 10px 0 hsla(0, 0%, 100%, 0.2)
-            );
+
+    /* 滚动条样式 */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
 `;
+
