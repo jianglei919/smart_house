@@ -21,7 +21,7 @@ const UserManage: FC<IProps> = ({ close }) => {
 
     useEffect(() => {
         (async () => {
-            const db = new DBWrapper("house", "1", {
+            const db = new DBWrapper("smarthouse", "1", {
                 onupgradeneeded: (e: any) => {
                     const db = e.target.result;
                     const objStore = db.createObjectStore("user", {

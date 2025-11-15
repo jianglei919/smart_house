@@ -37,7 +37,7 @@ export class SwitchController {
     constructor() {
         const info = JSON.parse(localStorage.getItem("user") || "{}");
         this.userInfo = info;
-        const db = new DBWrapper("house", "1", {
+        const db = new DBWrapper("smart_house", "1", {
             onupgradeneeded: (e: any) => {
                 const db = e.target.result;
                 const objStore = db.createObjectStore("user", {

@@ -30,7 +30,7 @@ const House: FC<IProps> = () => {
     }, []);
 
     const update = async (key: string, val: number) => {
-        const db = new DBWrapper("house", "1", {
+        const db = new DBWrapper("smart_house", "1", {
             onupgradeneeded: (e: any) => {
                 const db = e.target.result;
                 const objStore = db.createObjectStore("user", {
@@ -50,7 +50,7 @@ const House: FC<IProps> = () => {
 
     return (
         <>
-            <NextSEO title="智慧家居-数字" />
+            <NextSEO title="智慧家居数字系统" />
             <FixedTitle
                 style={{
                     color: "#c5ab72",

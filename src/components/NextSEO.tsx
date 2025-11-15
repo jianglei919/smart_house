@@ -23,7 +23,7 @@ export const NextSEO = ({ title, desc }: Partial<Record<string, string>>) => {
                 <link
                     rel="icon"
                     type="image.svg+sml"
-                    href="/3ds-pen.svg"
+                    href="/logo.png"
                 ></link>
             </Head>
         </>

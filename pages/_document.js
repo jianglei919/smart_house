@@ -40,7 +40,6 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <link rel="icon" href="logo.svg"></link>
                     <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
                     {styleElements}
                 </Head>

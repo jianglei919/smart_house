@@ -116,7 +116,7 @@ const HomePage: FC<IProps> = () => {
 
     return (
         <>
-            <NextSEO title="智能家居-数字孪生" />
+            <NextSEO title="智能家居数字系统" />
             <Container>
                 <FixedBg>
                     <Image src={bg} alt="" fill />
@@ -143,7 +143,7 @@ const HomePage: FC<IProps> = () => {
                             style={{ marginLeft: "10%", width: "80%" }}
                             onClick={login}
                         >
-                            登陆
+                            登录
                         </Button>
                         <span
                             onClick={() => {
