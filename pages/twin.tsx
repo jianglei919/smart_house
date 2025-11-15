@@ -57,7 +57,7 @@ async function init(helper: ThreeHelper) {
     helper.transparentBackGround();
     helper.initLights();
     helper.renderer.domElement.style["background"] =
-        "linear-gradient(135deg, #2e3192 0%, #1bffff 100%)";
+        "linear-gradient(135deg, #0ea5e9 0%, #2563eb 45%, #1e3a8a 100%)";
     //阴影开启
     // helper.renderer.shadowMap.enabled = true;
     //阴影类型

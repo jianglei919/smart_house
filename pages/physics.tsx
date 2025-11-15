@@ -53,11 +53,11 @@ const House: FC<IProps> = () => {
             <NextSEO title="智慧家居数字系统" />
             <FixedTitle
                 style={{
-                    color: "#c5ab72",
+                    color: "#e6f2ff",
                     zIndex: 1,
                     fontSize: "3vmax",
                     top: "3vh",
-                    textShadow: "2px 3px 4px #5d4e2f",
+                    textShadow: "2px 3px 6px rgba(30,64,175,0.6)",
                 }}
             >
                 智慧家居物理端
@@ -71,6 +71,7 @@ const House: FC<IProps> = () => {
                     border: none;
                     position: absolute;
                     left: 0;
+                    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 45%, #1e3a8a 100%);
                 `}
             />
             <Fixed>
@@ -128,14 +129,14 @@ async function init(helper: ThreeHelper) {
     helper.frameByFrame();
     helper.transparentBackGround();
     helper.initLights();
-    helper.useSkyEnvironment();
-    helper.renderer.domElement.style["background"] =
-        "linear-gradient(45deg, #fcbd00, #a68df0)";
+    helper.renderer.domElement.style.background =
+        "linear-gradient(135deg, #0ea5e9 0%, #2563eb 45%, #1e3a8a 100%)";
     //阴影开启
     // helper.renderer.shadowMap.enabled = true;
     //阴影类型
     // helper.renderer.shadowMap.type = THREE.PCFShadowMap;
     // helper.useRoomEnvironment();
+    // helper.useSkyEnvironment(); // 注释掉，否则会覆盖背景渐变
 
     const { switchController } = modelLoad();
     switchController.asyncDevice();
@@ -192,17 +193,9 @@ const Fixed = styled.div`
     height: max(70px, 7vh);
     font-size: min(14px, 1vw);
     padding: 10px;
-    background: var(--clay-background, rgba(0, 0, 0, 0.5));
-    border-radius: 0.3vw;
-    box-shadow: var(--clay-shadow-outset, 8px 8px 16px 0 rgba(0, 0, 0, 0.25)),
-        inset
-            var(
-                --clay-shadow-inset-primary,
-                -8px -8px 16px 0 rgba(0, 0, 0, 0.25)
-            ),
-        inset
-            var(
-                --clay-shadow-inset-secondary,
-                8px 8px 16px 0 hsla(0, 0%, 100%, 0.2)
-            );
+    background: linear-gradient(140deg, rgba(30,64,175,0.85) 0%, rgba(37,99,235,0.75) 55%, rgba(14,165,233,0.65) 100%);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    border-radius: 0.6vw;
+    box-shadow: 0 6px 18px rgba(30,64,175,0.35), inset 0 0 12px rgba(255,255,255,0.08);
 `;
