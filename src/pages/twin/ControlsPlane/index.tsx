@@ -157,18 +157,27 @@ export default ControlsPlane;
 const ManagerButton = styled.div<{ light?: boolean }>`
     height: 10vh;
     width: calc(100% - 10px);
-    transition: 0.3s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
     border: ${(props) =>
-        props.light ? "1px solid #4e4c8b" : "1px solid #fff"};
-    color: ${(props) => (props.light ? "#7377eb" : "#fff")};
-    border-radius: 5px;
+        props.light ? "1px solid rgba(255,255,255,.85)" : "1px solid rgba(255,255,255,.7)"};
+    color: #ffffff;
+    border-radius: 8px;
     margin: 5px;
     ${flexCenter};
     cursor: pointer;
     background: ${(props) =>
         props.light
-            ? "linear-gradient(308deg, rgb(251 217 118), rgb(197 179 250))"
-            : undefined};
+            ? "linear-gradient(135deg, #60a5fa 0%, #3b82f6 45%, #1d4ed8 100%)"
+            : "linear-gradient(135deg, #1e40af 0%, #2563eb 45%, #38bdf8 100%)"};
+    box-shadow: ${(props) =>
+        props.light ? "0 6px 18px rgba(37,99,235,.35)" : "0 4px 12px rgba(14,165,233,.25)"};
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px rgba(37,99,235,.35);
+    }
+    &:active {
+        transform: translateY(0);
+    }
 `;
 
 const Plane = styled.div<{ css?: ReturnType<typeof css> }>`
@@ -178,7 +187,7 @@ const Plane = styled.div<{ css?: ReturnType<typeof css> }>`
     top: 0;
     right: 0;
     z-index: 9;
-    background: linear-gradient(293deg, rgb(252 189 0), rgb(166 141 240));
+    background: linear-gradient(200deg, #0ea5e9 0%, #2563eb 45%, #1e3a8a 100%);
     ${(props) => {
         console.log(props.css);
         return props.css;
@@ -212,14 +221,14 @@ const Devices = styled.div<{ open: boolean }>`
     ${(props) =>
         props.open
             ? `
-            background: linear-gradient(226deg, #8960f9, #f29090)
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%)
             `
             : `
-            background:linear-gradient(226deg,#2c1e51,#774545)
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%)
             `};
     p {
         font-weight: bold;
-        color: #fffae5;
+        color: #e6f2ff;
         padding: 0.5vw;
     }
 `;

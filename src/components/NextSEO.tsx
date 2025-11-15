@@ -13,7 +13,7 @@ export const NextSEO = ({ title, desc }: Partial<Record<string, string>>) => {
     return (
         <>
             <NextSeo
-                title={title || "Three模版"}
+                title={title || "智慧家居数字系统"}
                 description={
                     desc ||
                     "技术选型:Next.js(React) + TypeScript + Three + CSS-In-JS"

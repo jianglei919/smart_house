@@ -57,8 +57,8 @@ const Button = styled.div`
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
     border: none;
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
+    opacity: 100;
 
     &:hover {
         background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
