@@ -74,7 +74,7 @@ const HomePage: FC<IProps> = () => {
                 });
                 objStore.createIndex("name", "name", { unique: 1 });
             },
-        }) as any;
+        } as any) as any;
         await db.open();
         const query = await db.getAllMatching("user", {
             index: "name",
@@ -254,7 +254,7 @@ const HomePage: FC<IProps> = () => {
 
 export default HomePage;
 
-const Input = styled.input`
+const StyledInput = styled.input`
     width: 85%;
     padding: 14px 18px;
     height: auto;
@@ -284,7 +284,11 @@ const Input = styled.input`
     }
 `;
 
-const Button = styled.div`
+const Input: FC<React.InputHTMLAttributes<HTMLInputElement>> = (props) => (
+    <StyledInput {...props} />
+);
+
+const StyledButton = styled.button`
     cursor: pointer;
     color: #ffffff;
     width: 85%;
@@ -312,6 +316,10 @@ const Button = styled.div`
         box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
     }
 `;
+
+const Button: FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => (
+    <StyledButton {...props} />
+);
 
 const Container = styled.div`
     overflow: hidden;

@@ -66,11 +66,19 @@ async function init(helper: ThreeHelper) {
 
     const { switchController } = modelLoad();
 
+    // 追踪漫游状态
+    let isRoamMode = false;
+
     const clickMesh = new ClickMesh();
 
     clickMesh.click((mesh) => {
         console.log(mesh);
-        mesh && switchController.toggleCss2DObject(mesh.uuid);
+        // 漫游模式下单击切换状态，非漫游模式下显示信息
+        if (isRoamMode) {
+            mesh && switchController.toggle(mesh);
+        } else {
+            mesh && switchController.toggleCss2DObject(mesh.uuid);
+        }
     });
 
     clickMesh.dblclick((mesh) => {
@@ -125,6 +133,8 @@ async function init(helper: ThreeHelper) {
             const { x: tx, y: ty, z: tz } = helper.controls.target;
             positionLinearAnimation.setStart({ x, y, z });
             targetLinearAnimation.setStart({ x: tx, y: ty, z: tz });
+            // 更新漫游状态
+            isRoamMode = state;
             // 漫游视角
             if (state) {
                 positionLinearAnimation.to({ ...door[1].position });

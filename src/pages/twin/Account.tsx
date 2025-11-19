@@ -41,7 +41,7 @@ const Account: FC<IProps> = () => {
 
 export default Account;
 
-const Button = styled.div`
+const StyledButton = styled.button`
     cursor: pointer;
     color: #ffffff;
     width: 100%;
@@ -71,6 +71,10 @@ const Button = styled.div`
         box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
     }
 `;
+
+const Button: FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => (
+    <StyledButton {...props} />
+);
 
 const Container = styled.div`
     position: fixed;
@@ -105,7 +109,7 @@ const Container = styled.div`
                     inset 0 1px 1px rgba(255, 255, 255, 0.5);
     }
     
-    :hover ${Button} {
+    :hover ${StyledButton} {
         visibility: visible;
         opacity: 1;
     }
