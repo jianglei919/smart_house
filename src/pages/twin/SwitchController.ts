@@ -360,8 +360,10 @@ export class SwitchController {
                 controlsPlaneRef.current?.setIsShowMonitor((p) => !p);
             }
         } else {
+            const oldState = item.state;
             item.running = true;
             item.state = item.state == "off" ? "on" : "off";
+            console.log(`🔄 切换 ${item.target.name}: ${oldState} → ${item.state}, running: ${item.running}`);
             upDB && this.updateDB(item.target.name);
             controlsPlaneRef.current?.setDevices(this.devices);
         }
@@ -394,6 +396,7 @@ export class SwitchController {
 
         Object.values(this.devices).forEach((item) => {
             if (item.running) {
+                // 调用对应状态的方法（on 或 off）
                 item[item.state](delta);
             }
         });
