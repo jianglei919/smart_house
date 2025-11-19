@@ -53,6 +53,11 @@ function destroy() {
 
 async function init(helper: ThreeHelper) {
     helper.camera.position.set(0, 10, 20);
+    
+    // 添加 AudioListener 到相机以启用 3D 空间音频
+    const listener = new THREE.AudioListener();
+    helper.camera.add(listener);
+    
     helper.frameByFrame();
     helper.transparentBackGround();
     helper.initLights();
@@ -64,7 +69,7 @@ async function init(helper: ThreeHelper) {
     // helper.renderer.shadowMap.type = THREE.PCFShadowMap;
     // helper.useRoomEnvironment();
 
-    const { switchController } = modelLoad();
+    const { switchController } = modelLoad(listener);
 
     // 追踪漫游状态
     let isRoamMode = false;
@@ -155,9 +160,9 @@ async function init(helper: ThreeHelper) {
     });
 }
 
-function modelLoad() {
+function modelLoad(listener?: THREE.AudioListener) {
     const helper = ThreeHelper.instance;
-    const switchController = new SwitchController();
+    const switchController = new SwitchController(listener);
 
     helper.loadGltf("/models/HOUSE/house.gltf").then((gltf) => {
         helper.add(gltf.scene);

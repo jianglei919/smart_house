@@ -6,7 +6,7 @@
  * @Description: SwitchController
  */
 
-import { AnimationMixer, Clock, Color, MeshStandardMaterial } from "three";
+import { AnimationMixer, Clock, Color, MeshStandardMaterial, AudioLoader, PositionalAudio, AudioListener } from "three";
 import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer";
 import { controlsPlaneRef } from "./ControlsPlane";
 import DBWrapper from "@/src/utils/DBWrapper";
@@ -23,6 +23,7 @@ export interface IDevices {
         state: "on" | "off";
         target: Object3D;
         bind?: boolean;
+        audio?: PositionalAudio;
     };
 }
 
@@ -33,8 +34,30 @@ export class SwitchController {
     click = new Clock();
     userInfo: DBUserInfo;
     db: any;
+    listener?: AudioListener;
+    audioLoader = new AudioLoader();
+    tvAudioBuffer?: AudioBuffer;
 
-    constructor() {
+    constructor(listener?: AudioListener) {
+        this.listener = listener;
+        
+        // 预加载电视音频
+        if (listener) {
+            this.audioLoader.load(
+                '/Willow Tree.mp3',
+                (buffer) => {
+                    this.tvAudioBuffer = buffer;
+                    console.log('✅ 音频加载成功');
+                    // 音频加载完成后，为所有已存在的TV设备添加音频
+                    this.attachAudioToTVs();
+                },
+                undefined,
+                (error) => {
+                    console.error('❌ 音频加载失败:', error);
+                }
+            );
+        }
+        
         const info = JSON.parse(localStorage.getItem("user") || "{}");
         this.userInfo = info;
         const db = new DBWrapper("smart_house", "1", {
@@ -61,6 +84,32 @@ export class SwitchController {
 
     get(uuid: string) {
         return this.devices[uuid];
+    }
+
+    /**
+     * 为所有TV设备附加音频
+     */
+    attachAudioToTVs() {
+        if (!this.listener || !this.tvAudioBuffer) return;
+        
+        Object.entries(this.devices).forEach(([uuid, device]) => {
+            const tv = device.target;
+            // 检查是否是TV设备且还没有音频
+            if (tv.name.includes("电视") && !device.audio) {
+                const audio = new PositionalAudio(this.listener!);
+                audio.setBuffer(this.tvAudioBuffer!);
+                audio.setRefDistance(2);
+                audio.setLoop(true);
+                audio.setVolume(1);
+                audio.setDirectionalCone(180, 230, 0.5);
+                tv.add(audio);
+                
+                // 更新设备的audio字段
+                device.audio = audio;
+                
+                console.log(`音频已附加到 ${tv.name}`);
+            }
+        });
     }
 
     addCss2DObject(desc: string, mesh: Object3D) {
@@ -243,9 +292,11 @@ export class SwitchController {
                 running: false,
                 state: "off",
                 on: () => {
+                    // 持续旋转，不设置 running = false
                     obj.rotation.y += 0.05;
                 },
                 off: () => {
+                    // 停止旋转
                     this.devices[obj.uuid].running = false;
                 },
                 target: obj,
@@ -258,6 +309,7 @@ export class SwitchController {
             this.addCss2DObject(name, tv);
             tv.userData.color = tv.material.color.clone();
             tv.material.color = new Color("#000");
+            
             this.devices[tv.uuid] = {
                 target: tv,
                 running: false,
@@ -265,12 +317,28 @@ export class SwitchController {
                 on: () => {
                     tv.material.color.copy(tv.userData.color);
                     tv.material.needsUpdate = true;
-                    this.devices[obj.uuid].running = false;
+                    this.devices[tv.uuid].running = false;
+                    
+                    // 播放音频
+                    const audio = this.devices[tv.uuid].audio;
+                    console.log(`📢 ${tv.name} 开启 - 音频存在:`, !!audio, '正在播放:', audio?.isPlaying);
+                    if (audio && !audio.isPlaying) {
+                        audio.play();
+                        console.log('▶️ 开始播放音频');
+                    }
                 },
                 off: () => {
                     tv.material.color.copy(new Color("#000"));
                     tv.material.needsUpdate = true;
-                    this.devices[obj.uuid].running = false;
+                    this.devices[tv.uuid].running = false;
+                    
+                    // 暂停音频
+                    const audio = this.devices[tv.uuid].audio;
+                    console.log(`🔇 ${tv.name} 关闭 - 音频存在:`, !!audio, '正在播放:', audio?.isPlaying);
+                    if (audio && audio.isPlaying) {
+                        audio.pause();
+                        console.log('⏸️ 暂停音频');
+                    }
                 },
             };
         } else {
