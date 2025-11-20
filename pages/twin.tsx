@@ -115,8 +115,8 @@ async function init(helper: ThreeHelper) {
             target: { x: 0, y: 0, z: 0 },
         },
         {
-            position: { x: 11, y: 3.2, z: -1 },
-            target: { x: 10, y: 3, z: -1 },
+            position: { x: 11, y: 2.2, z: -1 },
+            target: { x: 10, y: 2, z: -1 },
         },
     ];
 

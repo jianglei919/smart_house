@@ -13,12 +13,54 @@ import ControlsPlane, {
     controlsPlaneRef,
 } from "@/src/pages/twin/ControlsPlane";
 import { SwitchController } from "@/src/pages/twin/SwitchController";
-import { FlexDiv } from "@/src/styled";
 import DBWrapper from "@/src/utils/DBWrapper";
-import { FC, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { Fixed as FixedTitle } from "./index";
+import { FC, useEffect, useState, CSSProperties } from "react";
+import { css } from "styled-components";
 import { DBUserInfo } from ".";
+
+// 创建支持 children 的组件
+const FixedTitle: FC<{ style?: CSSProperties; children: React.ReactNode }> = ({ style, children }) => (
+    <span style={{
+        position: 'fixed',
+        color: '#e6f2ff',
+        zIndex: 1,
+        fontSize: '3vmax',
+        top: '3vh',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        textShadow: '2px 3px 6px rgba(30,64,175,0.6)',
+        ...style
+    }}>
+        {children}
+    </span>
+);
+
+const Fixed: FC<{ style?: CSSProperties; children: React.ReactNode }> = ({ style, children }) => (
+    <div style={{
+        position: 'fixed',
+        zIndex: 40,
+        bottom: '1vh',
+        right: 0,
+        width: 'max(200px, 10vw)',
+        height: 'max(70px, 7vh)',
+        fontSize: 'min(14px, 1vw)',
+        padding: '10px',
+        background: 'linear-gradient(140deg, rgba(30,64,175,0.85) 0%, rgba(37,99,235,0.75) 55%, rgba(14,165,233,0.65) 100%)',
+        border: '1px solid rgba(255,255,255,0.15)',
+        backdropFilter: 'blur(4px)',
+        borderRadius: '0.6vw',
+        boxShadow: '0 6px 18px rgba(30,64,175,0.35), inset 0 0 12px rgba(255,255,255,0.08)',
+        ...style
+    }}>
+        {children}
+    </div>
+);
+
+const FlexDivComponent: FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: 'column' }}>
+        {children}
+    </div>
+);
 
 interface IProps {}
 
@@ -30,16 +72,7 @@ const House: FC<IProps> = () => {
     }, []);
 
     const update = async (key: string, val: number) => {
-        const db = new DBWrapper("smart_house", "1", {
-            onupgradeneeded: (e: any) => {
-                const db = e.target.result;
-                const objStore = db.createObjectStore("user", {
-                    autoIncrement: true,
-                    keyPath: "id",
-                });
-                objStore.createIndex("name", "name", { unique: 1 });
-            },
-        }) as any;
+        const db = new DBWrapper("smart_house", "1") as any;
 
         db.open();
         const data = await db.get("user", user.id);
@@ -75,15 +108,15 @@ const House: FC<IProps> = () => {
                 `}
             />
             <Fixed>
-                <FlexDiv>
+                <FlexDivComponent>
                     <span>
                         当前屋内温度：
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
-                            defaultValue={user.当前温度 || 22}
+                            defaultValue={typeof user.温度 === 'number' ? user.温度 : 22}
                             onChange={(e) => {
-                                update("当前温度", Number(e.target.value));
+                                update("温度", Number(e.target.value));
                             }}
                         />
                         °C
@@ -93,29 +126,29 @@ const House: FC<IProps> = () => {
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
-                            defaultValue={user.温度阈值 || user.温度 || 22}
+                            defaultValue={typeof user.温度 === 'number' ? user.温度 : 22}
                             onChange={(e) => {
-                                update("温度阈值", Number(e.target.value));
+                                update("温度", Number(e.target.value));
                             }}
                         />
                         °C 度时将为您自动打开空调
                     </span>
-                </FlexDiv>
+                </FlexDivComponent>
             </Fixed>
             <Fixed
                 style={{
                     right: "max(210px,10vw)",
                 }}
             >
-                <FlexDiv>
+                <FlexDivComponent>
                     <span>
                         当前屋内湿度：
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
-                            defaultValue={user.当前湿度 || 45}
+                            defaultValue={typeof user.湿度 === 'number' ? user.湿度 : 45}
                             onChange={(e) => {
-                                update("当前湿度", Number(e.target.value));
+                                update("湿度", Number(e.target.value));
                             }}
                         />
                         %
@@ -125,14 +158,14 @@ const House: FC<IProps> = () => {
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
-                            defaultValue={user.湿度阈值 || user.湿度 || 40}
+                            defaultValue={typeof user.湿度 === 'number' ? user.湿度 : 40}
                             onChange={(e) => {
-                                update("湿度阈值", Number(e.target.value));
+                                update("湿度", Number(e.target.value));
                             }}
                         />
                         % 时将为您自动打开阳台门
                     </span>
-                </FlexDiv>
+                </FlexDivComponent>
             </Fixed>
         </>
     );
@@ -205,19 +238,3 @@ function modelLoad() {
 
     return { switchController };
 }
-
-const Fixed = styled.div`
-    position: fixed;
-    z-index: 40;
-    bottom: 1vh;
-    right: 0;
-    width: max(200px, 10vw);
-    height: max(70px, 7vh);
-    font-size: min(14px, 1vw);
-    padding: 10px;
-    background: linear-gradient(140deg, rgba(30,64,175,0.85) 0%, rgba(37,99,235,0.75) 55%, rgba(14,165,233,0.65) 100%);
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(4px);
-    border-radius: 0.6vw;
-    box-shadow: 0 6px 18px rgba(30,64,175,0.35), inset 0 0 12px rgba(255,255,255,0.08);
-`;
