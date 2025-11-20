@@ -76,15 +76,26 @@ const House: FC<IProps> = () => {
             />
             <Fixed>
                 <FlexDiv>
-                    <span>当前屋内温度： {22}</span>
+                    <span>
+                        当前屋内温度：
+                        <input
+                            type="number"
+                            style={{ width: "40px", margin: "0 5px" }}
+                            defaultValue={user.当前温度 || 22}
+                            onChange={(e) => {
+                                update("当前温度", Number(e.target.value));
+                            }}
+                        />
+                        °C
+                    </span>
                     <span>
                         当温度高于
                         <input
                             type="number"
-                            style={{ width: "40px" }}
-                            defaultValue={user.温度}
+                            style={{ width: "40px", margin: "0 5px" }}
+                            defaultValue={user.温度阈值 || user.温度 || 22}
                             onChange={(e) => {
-                                update("温度", Number(e.target.value));
+                                update("温度阈值", Number(e.target.value));
                             }}
                         />
                         °C 度时将为您自动打开空调
@@ -97,18 +108,29 @@ const House: FC<IProps> = () => {
                 }}
             >
                 <FlexDiv>
-                    <span>当前屋内湿度： {45}%</span>
                     <span>
-                        当湿度高于
+                        当前屋内湿度：
                         <input
                             type="number"
-                            style={{ width: "40px" }}
-                            defaultValue={user.湿度}
+                            style={{ width: "40px", margin: "0 5px" }}
+                            defaultValue={user.当前湿度 || 45}
                             onChange={(e) => {
-                                update("湿度", Number(e.target.value));
+                                update("当前湿度", Number(e.target.value));
                             }}
                         />
-                        度时将为您自动打开阳台门
+                        %
+                    </span>
+                    <span>
+                        当湿度低于
+                        <input
+                            type="number"
+                            style={{ width: "40px", margin: "0 5px" }}
+                            defaultValue={user.湿度阈值 || user.湿度 || 40}
+                            onChange={(e) => {
+                                update("湿度阈值", Number(e.target.value));
+                            }}
+                        />
+                        % 时将为您自动打开阳台门
                     </span>
                 </FlexDiv>
             </Fixed>

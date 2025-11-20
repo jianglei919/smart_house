@@ -53,6 +53,11 @@ function destroy() {
 
 async function init(helper: ThreeHelper) {
     helper.camera.position.set(0, 10, 20);
+    
+    // 添加 AudioListener 到相机以启用 3D 空间音频
+    const listener = new THREE.AudioListener();
+    helper.camera.add(listener);
+    
     helper.frameByFrame();
     helper.transparentBackGround();
     helper.initLights();
@@ -64,13 +69,21 @@ async function init(helper: ThreeHelper) {
     // helper.renderer.shadowMap.type = THREE.PCFShadowMap;
     // helper.useRoomEnvironment();
 
-    const { switchController } = modelLoad();
+    const { switchController } = modelLoad(listener);
+
+    // 追踪漫游状态
+    let isRoamMode = false;
 
     const clickMesh = new ClickMesh();
 
     clickMesh.click((mesh) => {
         console.log(mesh);
-        mesh && switchController.toggleCss2DObject(mesh.uuid);
+        // 漫游模式下单击切换状态，非漫游模式下显示信息
+        if (isRoamMode) {
+            mesh && switchController.toggle(mesh);
+        } else {
+            mesh && switchController.toggleCss2DObject(mesh.uuid);
+        }
     });
 
     clickMesh.dblclick((mesh) => {
@@ -125,6 +138,8 @@ async function init(helper: ThreeHelper) {
             const { x: tx, y: ty, z: tz } = helper.controls.target;
             positionLinearAnimation.setStart({ x, y, z });
             targetLinearAnimation.setStart({ x: tx, y: ty, z: tz });
+            // 更新漫游状态
+            isRoamMode = state;
             // 漫游视角
             if (state) {
                 positionLinearAnimation.to({ ...door[1].position });
@@ -145,9 +160,9 @@ async function init(helper: ThreeHelper) {
     });
 }
 
-function modelLoad() {
+function modelLoad(listener?: THREE.AudioListener) {
     const helper = ThreeHelper.instance;
-    const switchController = new SwitchController();
+    const switchController = new SwitchController(listener);
 
     helper.loadGltf("/models/HOUSE/house.gltf").then((gltf) => {
         helper.add(gltf.scene);
