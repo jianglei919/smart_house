@@ -63,29 +63,30 @@ async function init(helper: ThreeHelper) {
 
 export class KeyboardMove {
     transform = new THREE.Vector3();
+    moveSpeed = 0.15; // 移动速度，可以调整这个值：0.1=慢，0.15=中等，0.2=快
     events = {
         KeyW: {
             press: false,
             handle: () => {
-                this.transform.z -= 0.1;
+                this.transform.z -= this.moveSpeed;
             },
         },
         KeyA: {
             press: false,
             handle: () => {
-                this.transform.x -= 0.1;
+                this.transform.x -= this.moveSpeed;
             },
         },
         KeyS: {
             press: false,
             handle: () => {
-                this.transform.z += 0.1;
+                this.transform.z += this.moveSpeed;
             },
         },
         KeyD: {
             press: false,
             handle: () => {
-                this.transform.x += 0.1;
+                this.transform.x += this.moveSpeed;
             },
         },
     } as Record<string, { press: boolean; handle: VoidFunction }>;

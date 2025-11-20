@@ -83,7 +83,7 @@ const House: FC<IProps> = () => {
 
     return (
         <>
-            <NextSEO title="智慧家居数字系统" />
+            <NextSEO title="Smart Home Digital System" />
             <FixedTitle
                 style={{
                     color: "#e6f2ff",
@@ -93,7 +93,7 @@ const House: FC<IProps> = () => {
                     textShadow: "2px 3px 6px rgba(30,64,175,0.6)",
                 }}
             >
-                智慧家居物理端
+                Smart Home Physical Interface
             </FixedTitle>
             <Canvas
                 init={init}
@@ -110,7 +110,7 @@ const House: FC<IProps> = () => {
             <Fixed>
                 <FlexDivComponent>
                     <span>
-                        当前屋内温度：
+                        Current Indoor Temperature:
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
@@ -122,7 +122,7 @@ const House: FC<IProps> = () => {
                         °C
                     </span>
                     <span>
-                        当温度高于
+                        When temperature exceeds
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
@@ -131,7 +131,7 @@ const House: FC<IProps> = () => {
                                 update("温度", Number(e.target.value));
                             }}
                         />
-                        °C 度时将为您自动打开空调
+                        °C, AC will turn on automatically
                     </span>
                 </FlexDivComponent>
             </Fixed>
@@ -142,7 +142,7 @@ const House: FC<IProps> = () => {
             >
                 <FlexDivComponent>
                     <span>
-                        当前屋内湿度：
+                        Current Indoor Humidity:
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
@@ -154,7 +154,7 @@ const House: FC<IProps> = () => {
                         %
                     </span>
                     <span>
-                        当湿度低于
+                        When humidity falls below
                         <input
                             type="number"
                             style={{ width: "40px", margin: "0 5px" }}
@@ -163,7 +163,7 @@ const House: FC<IProps> = () => {
                                 update("湿度", Number(e.target.value));
                             }}
                         />
-                        % 时将为您自动打开阳台门
+                        %, balcony doors will open automatically
                     </span>
                 </FlexDivComponent>
             </Fixed>

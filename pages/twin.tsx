@@ -25,7 +25,7 @@ interface IProps {}
 const House: FC<IProps> = () => {
     return (
         <Fragment>
-            <NextSEO title="智慧家居数字系统" />
+            <NextSEO title="Smart Home Digital System" />
             <Account />
             <Canvas
                 init={init}
@@ -94,6 +94,7 @@ async function init(helper: ThreeHelper) {
         clickMesh.destroy();
     });
     const keyboardMove = new KeyboardMove(helper.controls, helper.camera);
+    keyboardMove.moveSpeed = 0.08; // 设置漫游速度：0.05=很慢，0.08=慢，0.1=正常
 
     destroyEvent.push(() => {
         keyboardMove.removeListen();

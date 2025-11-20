@@ -100,7 +100,7 @@ const HomePage: FC<IProps> = () => {
                 })
                 .catch((err: any) => {
                     console.log("err", err);
-                    alert("用户名重复");
+                    alert("Username already exists");
                 });
         } else {
             if (query[0].password == password) {
@@ -108,7 +108,7 @@ const HomePage: FC<IProps> = () => {
                 localStorage.setItem("user", JSON.stringify(query[0]));
                 location.href = "/twin";
             } else {
-                alert("密码错误");
+                alert("Incorrect password");
             }
         }
         setIsLoading(false);
@@ -116,7 +116,7 @@ const HomePage: FC<IProps> = () => {
 
     return (
         <>
-            <NextSEO title="智能家居数字系统" />
+            <NextSEO title="Smart Home Digital System" />
             <Container>
                 <FixedBg>
                     <Image src={bg} alt="" fill />
@@ -128,7 +128,7 @@ const HomePage: FC<IProps> = () => {
                             onChange={(e) => {
                                 setName(e.target.value);
                             }}
-                            placeholder="用户名"
+                            placeholder="Username"
                         />
 
                         <Input
@@ -136,14 +136,14 @@ const HomePage: FC<IProps> = () => {
                             onChange={(e) => {
                                 setPassword(e.target.value);
                             }}
-                            placeholder="密码"
+                            placeholder="Password"
                             type="password"
                         />
                         <Button
                             style={{ marginLeft: "10%", width: "80%" }}
                             onClick={login}
                         >
-                            登录
+                            Login
                         </Button>
                         <span
                             onClick={() => {
@@ -164,7 +164,7 @@ const HomePage: FC<IProps> = () => {
                                 e.currentTarget.style.color = "#3498DB";
                             }}
                         >
-                            还没有账号？立即注册
+                            Don't have an account? Sign up
                         </span>
                     </Plane>
                 )}
@@ -178,7 +178,7 @@ const HomePage: FC<IProps> = () => {
                                     name: e.target.value,
                                 }));
                             }}
-                            placeholder="用户名"
+                            placeholder="Username"
                         />
 
                         <Input
@@ -189,7 +189,7 @@ const HomePage: FC<IProps> = () => {
                                     password: e.target.value,
                                 }));
                             }}
-                            placeholder="密码"
+                            placeholder="Password"
                             type="password"
                         />
                         <Input
@@ -200,7 +200,7 @@ const HomePage: FC<IProps> = () => {
                                     conformPWD: e.target.value,
                                 }));
                             }}
-                            placeholder="确认密码"
+                            placeholder="Confirm Password"
                             type="password"
                         />
                         <Button
@@ -211,17 +211,17 @@ const HomePage: FC<IProps> = () => {
                                     !register.password ||
                                     !register.conformPWD
                                 ) {
-                                    alert("请将信息填写完整");
+                                    alert("Please fill in all information");
                                 } else if (
                                     register.password != register.conformPWD
                                 ) {
-                                    alert("两次密码输入不同");
+                                    alert("Password mismatch");
                                 } else {
                                     login();
                                 }
                             }}
                         >
-                            注册
+                            Sign Up
                         </Button>
                         <span
                             onClick={() => {
@@ -242,11 +242,11 @@ const HomePage: FC<IProps> = () => {
                                 e.currentTarget.style.color = "#3498DB";
                             }}
                         >
-                            已有账号？立即登录
+                            Already have an account? Login
                         </span>
                     </Plane>
                 ) : null}
-                <Fixed>智慧家居数字系统</Fixed>
+                <Fixed>Smart Home Digital System</Fixed>
             </Container>
         </>
     );

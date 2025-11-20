@@ -12,6 +12,28 @@ import { controlsPlaneRef } from "./ControlsPlane";
 import DBWrapper from "@/src/utils/DBWrapper";
 import { DBDevice, DBUserInfo } from "@/pages";
 
+// 设备名称中英文映射（仅用于UI显示）
+const deviceNameMap: Record<string, string> = {
+    "空调": "AC",
+    "次卧": "Second Bedroom",
+    "主卧": "Master Bedroom",
+    "客厅电视": "Living Room TV",
+    "房门": "Room Door",
+    "卫生间": "Bathroom",
+    "厨房": "Kitchen",
+    "阳台右门": "Right Balcony Door",
+    "阳台左门": "Left Balcony Door",
+    "卧室电视": "Bedroom TV",
+    "风扇": "Fan",
+    "次卧吊灯": "Second Bedroom Light",
+    "大吊灯": "Main Chandelier",
+    "主卧吊灯": "Master Bedroom Light",
+};
+
+const getDeviceDisplayName = (name: string): string => {
+    return deviceNameMap[name] || name;
+};
+
 export interface IDevices {
     [uuid: string]: {
         off: (d: number) => void;
@@ -117,7 +139,8 @@ export class SwitchController {
         const div = document.createElement("div");
         div.className = "css2dLabel";
         const dbDevice = this.userInfo[mesh.name];
-        div.textContent = `${desc}已为你工作${dbDevice.duration}小时`;
+        const displayName = getDeviceDisplayName(desc);
+        div.textContent = `${displayName} has worked for ${dbDevice.duration} hours`;
         div.style.fontSize = "12px";
         div.style.backgroundColor = "transparent";
         const css2DObject = new CSS2DObject(div);

@@ -44,7 +44,7 @@ const UserManage: FC<IProps> = ({ close }) => {
             <Overlay onClick={close} />
             <Container>
                 <Header>
-                    <Title>用户管理</Title>
+                    <Title>User Management</Title>
                     <CloseButton onClick={close}>✕</CloseButton>
                 </Header>
 
@@ -57,7 +57,7 @@ const UserManage: FC<IProps> = ({ close }) => {
                                     <PasswordInput
                                         type="text"
                                         value={user.password}
-                                        placeholder="输入密码"
+                                        placeholder="Enter password"
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                             setUsers((users) =>
                                                 users.map((u) => {
@@ -80,17 +80,17 @@ const UserManage: FC<IProps> = ({ close }) => {
                                                         .then((res: number) => {
                                                             setTimeout(() => {
                                                                 console.log("res", res);
-                                                                alert("修改成功");
+                                                                alert("Update successful");
                                                             }, 100);
                                                         })
                                                         .catch((err: any) => {
                                                             console.log("err", err);
-                                                            alert("修改失败");
+                                                            alert("Update failed");
                                                         });
                                                 }
                                             }}
                                         >
-                                            更新
+                                            Update
                                         </Button>
                                         <Button
                                             onClick={async () => {
@@ -100,7 +100,7 @@ const UserManage: FC<IProps> = ({ close }) => {
                                                         .then((res: number) => {
                                                             setTimeout(() => {
                                                                 console.log("res", res);
-                                                                alert("删除成功");
+                                                                alert("Delete successful");
                                                                 setUsers((users) =>
                                                                     users.filter(
                                                                         (u) => u.id != user.id
@@ -110,12 +110,12 @@ const UserManage: FC<IProps> = ({ close }) => {
                                                         })
                                                         .catch((err: any) => {
                                                             console.log("err", err);
-                                                            alert("删除失败");
+                                                            alert("Delete failed");
                                                         });
                                                 }
                                             }}
                                         >
-                                            删除
+                                            Delete
                                         </Button>
                                     </ButtonGroup>
                                 </UserItem>
@@ -123,7 +123,7 @@ const UserManage: FC<IProps> = ({ close }) => {
                         </UserList>
                     </>
                 ) : (
-                    <EmptyState>暂无用户数据</EmptyState>
+                    <EmptyState>No user data available</EmptyState>
                 )}
             </Container>
         </>

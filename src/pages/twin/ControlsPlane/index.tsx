@@ -26,6 +26,28 @@ import UserManage from "./UserManage";
 import Temperature from "./chart/Temperature";
 import AirQuality from "./chart/AirQuality";
 
+// 设备名称中英文映射（仅用于UI显示）
+const deviceNameMap: Record<string, string> = {
+    "空调": "AC",
+    "次卧": "Second Bedroom",
+    "主卧": "Master Bedroom",
+    "客厅电视": "Living Room TV",
+    "房门": "Room Door",
+    "卫生间": "Bathroom",
+    "厨房": "Kitchen",
+    "阳台右门": "Right Balcony Door",
+    "阳台左门": "Left Balcony Door",
+    "卧室电视": "Bedroom TV",
+    "风扇": "Fan",
+    "次卧吊灯": "Second Bedroom Light",
+    "大吊灯": "Main Chandelier",
+    "主卧吊灯": "Master Bedroom Light",
+};
+
+const getDeviceDisplayName = (name: string): string => {
+    return deviceNameMap[name] || name;
+};
+
 export const controlsPlaneRef = createRef<{
     setDevices: (IDevices: IDevices) => void;
     toggle: (o: Mesh) => void;
@@ -81,13 +103,13 @@ const ControlsPlane: FC<IProps> = ({ css }) => {
                     window.open(`${location.origin}/physics`);
                 }}
             >
-                前往物理端
+                Go to Physical Interface
             </ManagerButton>
             <ManagerButton
                 light={isShowDevices}
                 onClick={() => setIsShowDevices((p) => !p)}
             >
-                电器开关
+                Device Switch
             </ManagerButton>
             <SwitchWrap show={isShowDevices}>
                 {devices.map((device) => (
@@ -100,24 +122,24 @@ const ControlsPlane: FC<IProps> = ({ css }) => {
                         key={device.target.uuid}
                         open={device.state == "on"}
                     >
-                        <p>{device.target.name}</p>
+                        <p>{getDeviceDisplayName(device.target.name)}</p>
                     </Devices>
                 ))}
             </SwitchWrap>
             <ManagerButton light={isShowDevicesInfo} onClick={showDevicesInfo}>
-                电器信息
+                Device Info
             </ManagerButton>
             <ManagerButton
                 light={isShowDevicesData}
                 onClick={() => setIsShowDevicesData((p) => !p)}
             >
-                屋内数据
+                Indoor Data
             </ManagerButton>
             <ManagerButton
                 light={isShowMonitor}
                 onClick={() => setIsShowMonitor((p) => !p)}
             >
-                监控摄像头
+                Monitor Camera
             </ManagerButton>
             <ManagerButton
                 light={isRoam}
@@ -126,14 +148,14 @@ const ControlsPlane: FC<IProps> = ({ css }) => {
                     setIsRoam((p) => !p);
                 }}
             >
-                漫游
+                Roam Mode
             </ManagerButton>
             {user.name == "admin" ? (
                 <ManagerButton
                     light={isManageUsers}
                     onClick={() => setIsManageUsers((p) => !p)}
                 >
-                    管理用户信息
+                    User Management
                 </ManagerButton>
             ) : null}
             {isShowDevicesData ? (

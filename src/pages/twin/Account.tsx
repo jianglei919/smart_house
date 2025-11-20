@@ -33,7 +33,7 @@ const Account: FC<IProps> = () => {
                     location.href = "/";
                 }}
             >
-                登出
+                Logout
             </Button>
         </Container>
     );
