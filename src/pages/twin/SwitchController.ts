@@ -240,11 +240,13 @@ export class SwitchController {
             if (light) {
                 this.addCss2DObject(obj.name, obj);
                 light.userData.intensity = light.intensity;
+                // 初始化时关闭灯光
+                light.intensity = 0;
                 // console.log(obj);
                 this.devices[obj.uuid] = {
                     target: obj,
                     running: false,
-                    state: "on",
+                    state: "off",
                     on: () => {
                         // light.visible = true;
                         light.intensity = light.userData.intensity;
