@@ -6,6 +6,12 @@
  * @LastEditTime: 2025-10-21 18:25:55
  * @Description:
  */
+
+interface DBWrapperOptions {
+    onupgradeneeded?: (event: any) => void;
+    onversionchange?: () => void;
+}
+
 class DBWrapper {
     _name: any;
     _version: any;
@@ -14,7 +20,7 @@ class DBWrapper {
     constructor(
         name: any,
         version: any,
-        { onupgradeneeded, onversionchange = this._onversionchange } = {}
+        { onupgradeneeded, onversionchange = this._onversionchange }: DBWrapperOptions = {}
     ) {
         this._name = name;
         this._version = version;
