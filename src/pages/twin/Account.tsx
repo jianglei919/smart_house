@@ -57,8 +57,8 @@ const StyledButton = styled.button`
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
     border: none;
-    visibility: visible;
-    opacity: 100;
+    visibility: hidden;
+    opacity: 0;
 
     &:hover {
         background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
@@ -79,7 +79,7 @@ const Button: FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => (
 const Container = styled.div`
     position: fixed;
     top: 2vh;
-    left: 2vw;
+    left: 0;
     z-index: 100;
     width: min(200px, 15vw);
     padding: 20px;
@@ -91,6 +91,7 @@ const Container = styled.div`
                 0 2px 8px rgba(135, 206, 250, 0.2),
                 inset 0 1px 1px rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
+    transform: translateX(-75%);
     
     p {
         margin: 0 0 10px 0;
@@ -103,7 +104,8 @@ const Container = styled.div`
         text-overflow: ellipsis;
     }
     
-    :hover {
+    &:hover {
+        transform: translateX(0);
         box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2),
                     0 4px 12px rgba(135, 206, 250, 0.3),
                     inset 0 1px 1px rgba(255, 255, 255, 0.5);
