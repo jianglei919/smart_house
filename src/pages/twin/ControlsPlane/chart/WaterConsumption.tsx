@@ -20,7 +20,7 @@ const WaterConsumption: FC<IProps> = () => {
 
         const option = {
             title: {
-                text: "用水消耗(L)",
+                text: "Water Consumption (L)",
                 left: vmax(1),
                 textStyle: {
                     color: "#fffae5",
@@ -39,7 +39,7 @@ const WaterConsumption: FC<IProps> = () => {
             },
             xAxis: {
                 type: "category",
-                data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+                data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
                 axisLabel: {
                     interval: 0,
                     fontSize: vmax(0.7),
@@ -63,7 +63,7 @@ const WaterConsumption: FC<IProps> = () => {
                 splitLine: {
                     //   show: false,
                     lineStyle: {
-                        // 使用深浅的间隔色
+                        // Use alternating dark and light colors
                         color: "#aaa",
                     },
                 },

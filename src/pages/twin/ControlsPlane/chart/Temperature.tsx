@@ -3,7 +3,7 @@
  * @Date: 2025-10-20 22:06:18
  * @LastEditors: smartHome
  * @LastEditTime: 2025-10-20 22:18:23
- * @Description: Temperature 温度
+ * @Description: Temperature
  */
 import { FC, useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -20,7 +20,7 @@ const Temperature: FC<IProps> = () => {
 
         const option = {
             title: {
-                text: "24h温度(摄氏度)",
+                text: "24h Temperature (°C)",
                 left: vmax(1),
                 textStyle: {
                     color: "#fffae5",
@@ -63,7 +63,7 @@ const Temperature: FC<IProps> = () => {
                 splitLine: {
                     //   show: false,
                     lineStyle: {
-                        // 使用深浅的间隔色
+                        // Use alternating dark and light colors
                         color: "#aaa",
                     },
                 },

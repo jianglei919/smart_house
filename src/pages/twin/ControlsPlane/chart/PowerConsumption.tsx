@@ -13,7 +13,7 @@ const PowerConsumption: FC<IProps> = () => {
 
         const option = {
             title: {
-                text: "用电消耗(W)",
+                text: "Power Consumption (W)",
                 left: vmax(1),
                 textStyle: {
                     color: "#fffae5",
@@ -25,10 +25,10 @@ const PowerConsumption: FC<IProps> = () => {
                 {
                     type: "pie",
                     data: [
-                        { name: "灯", value: 10 },
-                        { name: "空调", value: 20 },
-                        { name: "冰箱", value: 20 },
-                        { name: "其他", value: 5 },
+                        { name: "Lights", value: 10 },
+                        { name: "Air Conditioner", value: 20 },
+                        { name: "Refrigerator", value: 20 },
+                        { name: "Others", value: 5 },
                     ],
                     selectedMode: "single",
                     selectedOffset: 10,

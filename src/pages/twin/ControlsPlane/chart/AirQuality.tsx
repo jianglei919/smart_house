@@ -3,7 +3,7 @@
  * @Date: 2025-10-20 22:19:07
  * @LastEditors: smartHome
  * @LastEditTime: 2025-10-20 22:59:42
- * @Description:AirQuality 空气质量
+ * @Description:AirQuality - Air Quality
  */
 import { FC, useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -20,7 +20,7 @@ const AirQuality: FC<IProps> = () => {
 
         const option = {
             title: {
-                text: "24h空气质量",
+                text: "24h Air Quality",
                 left: vmax(1),
                 textStyle: {
                     color: "#fffae5",
@@ -63,7 +63,7 @@ const AirQuality: FC<IProps> = () => {
                 splitLine: {
                     //   show: false,
                     lineStyle: {
-                        // 使用深浅的间隔色
+                        // Use alternating dark and light colors
                         color: "#aaa",
                     },
                 },
